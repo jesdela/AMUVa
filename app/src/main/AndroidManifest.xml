@@ -22,6 +22,10 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
         </activity>
+        <activity
+            android:name=".Robolid"
+            android:label="@string/title_activity_robolid" >
+        </activity>
     </application>
 
 </manifest>
