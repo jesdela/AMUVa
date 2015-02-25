@@ -1,22 +1,20 @@
 package com.jldes.amuva;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
@@ -27,11 +25,6 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
-    private CharSequence mTitle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +32,7 @@ public class MainActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -50,22 +43,27 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+//        switch (position){
+//            case 0:
+//                break;
+//            case 1:
+//                break;
+//        }
     }
 
     public void onSectionAttached(int number) {
+
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+
+                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+
+                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
                 break;
         }
     }
