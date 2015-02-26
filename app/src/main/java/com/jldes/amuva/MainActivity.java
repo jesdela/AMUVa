@@ -46,12 +46,7 @@ public class MainActivity extends ActionBarActivity
         adaptador = new AdaptadorTitulares(datos);
         recView.setAdapter(adaptador);
 
-        adaptador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("DemoRecView", "Pulsado el elemento " + recView.getChildPosition(v));
-            }
-        });
+
 
 
         recView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
@@ -72,6 +67,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        
     }
 
     @Override
@@ -163,7 +159,13 @@ public class MainActivity extends ActionBarActivity
             adaptador = new AdaptadorTitulares(datos);
 
             recView.setAdapter(adaptador);
-
+            adaptador.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this,NoticiaCompleta.class);
+                    startActivity(intent);
+                }
+            });
 
         }
 

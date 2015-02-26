@@ -46,11 +46,11 @@ public class Robolid extends ActionBarActivity
         // update the main content by replacing fragments
         switch (position) {
             case 0:
-
-                break;
-            case 1:
                 intent = new Intent(Robolid.this, MainActivity.class);
                 startActivity(intent);
+                break;
+            case 1:
+
                 break;
         }
     }
