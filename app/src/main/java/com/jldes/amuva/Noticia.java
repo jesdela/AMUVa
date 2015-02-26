@@ -1,6 +1,8 @@
 package com.jldes.amuva;
 
-public class Noticia {
+import java.io.Serializable;
+
+public class Noticia  implements Serializable{
     private String titulo;
     private String link;
     private String descripcion;

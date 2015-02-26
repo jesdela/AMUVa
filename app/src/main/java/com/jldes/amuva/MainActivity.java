@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        
+
     }
 
     @Override
@@ -163,6 +164,7 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this,NoticiaCompleta.class);
+                    intent.putExtra("Noticia", noticias.get(recView.getChildPosition(v)));
                     startActivity(intent);
                 }
             });
