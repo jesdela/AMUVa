@@ -1,6 +1,7 @@
 package com.jldes.amuva;
 
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,6 +20,8 @@ import java.net.URL;
 
 public class NoticiaCompleta extends ActionBarActivity {
     Noticia noticia;
+    private TextView sub_titulo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +29,10 @@ public class NoticiaCompleta extends ActionBarActivity {
         noticia = new Noticia();
         noticia = (Noticia)getIntent().getSerializableExtra("Noticia");
         TextView titulo = (TextView)findViewById(R.id.LblTitulo);
-        TextView sub_titulo = (TextView)findViewById(R.id.LblSubTitulo);
+        sub_titulo = (TextView)findViewById(R.id.LblSubTitulo);
         titulo.setText(noticia.getTitulo().toString());
-        Spanned spanned = Html.fromHtml(noticia.getContenido(), getImageHTML(), null);
-        sub_titulo.setText(spanned.toString());
+        CargaImage tarea = new CargaImage();
+        tarea.execute();
     }
 
 
@@ -54,19 +57,38 @@ public class NoticiaCompleta extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    public Html.ImageGetter getImageHTML() {
-        Html.ImageGetter ig = new Html.ImageGetter() {
-            public Drawable getDrawable(String source) {
-                try {
-                    Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
-                    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-                    return d;
-                } catch (IOException e) {
-                    Log.v("IOException", e.getMessage());
-                    return null;
+    
+    private class CargaImage extends AsyncTask<String, Integer, Boolean>{
+
+        private Spanned spanned;
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            spanned = Html.fromHtml(noticia.getContenido(), getImageHTML(), null);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            Log.d("Prueba", spanned.toString());
+            sub_titulo.setText(spanned.toString());
+            super.onPostExecute(aBoolean);
+        }
+
+        public Html.ImageGetter getImageHTML() {
+            Html.ImageGetter ig = new Html.ImageGetter() {
+                public Drawable getDrawable(String source) {
+                    try {
+                        Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
+                        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+                        return null;
+                    } catch (IOException e) {
+                        Log.v("IOException", e.getMessage());
+                        return null;
+                    }
                 }
-            }
-        };
-        return ig;
+            };
+            return ig;
+        }
     }
 }
