@@ -1,35 +1,68 @@
 package com.jldes.amuva;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+    private RecyclerView recView;
 
+    private ArrayList<Titular> datos;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private List<Noticia> noticias;
+    private AdaptadorTitulares adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        datos = new ArrayList<Titular>();
+        recView = (RecyclerView) findViewById(R.id.RecView);
+        recView.setHasFixedSize(true);
+        adaptador = new AdaptadorTitulares(datos);
+        recView.setAdapter(adaptador);
+
+        adaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("DemoRecView", "Pulsado el elemento " + recView.getChildPosition(v));
+            }
+        });
+
+
+        recView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
+        //recView.setLayoutManager(new GridLayoutManager(this,3));
+
+//        recView.addItemDecoration(
+//                new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
+
+        recView.setItemAnimator(new DefaultItemAnimator());
+        CargarXmlTask tarea = new CargarXmlTask();
+        tarea.execute("http://amuva.es/feed/");
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -45,12 +78,12 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         Intent intent;
         // update the main content by replacing fragments
-        switch (position){
+        switch (position) {
             case 0:
 
                 break;
             case 1:
-                intent = new Intent(MainActivity.this,Robolid.class);
+                intent = new Intent(MainActivity.this, Robolid.class);
                 startActivity(intent);
                 break;
         }
@@ -60,15 +93,15 @@ public class MainActivity extends ActionBarActivity
 
         switch (number) {
             case 1:
-                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "" + number, Toast.LENGTH_SHORT).show();
                 break;
             case 2:
 
-                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "" + number, Toast.LENGTH_SHORT).show();
                 break;
             case 3:
 
-                Toast.makeText(MainActivity.this,""+number,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "" + number, Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -101,52 +134,53 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
+    private class CargarXmlTask extends AsyncTask<String, Integer, Boolean> {
+
+        protected Boolean doInBackground(String... params) {
+
+            RssParserSax2 saxparser =
+                    new RssParserSax2(params[0]);
+
+            noticias = saxparser.parse();
+
+            return true;
         }
 
-        public PlaceholderFragment() {
+        protected void onPostExecute(Boolean result) {
+
+            //Tratamos la lista de noticias
+            //Por ejemplo: escribimos los títulos en pantalla
+            for (Noticia noticia : noticias.subList(0,6)) {
+                Spanned spanned = Html.fromHtml(noticia.getDescripcion(), getImageHTML(), null);
+                datos.add(new Titular(noticia.getTitulo(), "" + spanned));
+            }
+            adaptador = new AdaptadorTitulares(datos);
+
+            recView.setAdapter(adaptador);
+
+
         }
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView)rootView.findViewById(R.id.section_label);
-            textView.setText("asd");
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
+        public Html.ImageGetter getImageHTML() {
+            Html.ImageGetter ig = new Html.ImageGetter() {
+                public Drawable getDrawable(String source) {
+                    try {
+                        Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
+                        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+                        return d;
+                    } catch (IOException e) {
+                        Log.v("IOException", e.getMessage());
+                        return null;
+                    }
+                }
+            };
+            return ig;
         }
     }
 
