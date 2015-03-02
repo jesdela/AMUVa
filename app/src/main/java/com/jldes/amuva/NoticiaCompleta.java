@@ -9,6 +9,7 @@ import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +29,19 @@ public class NoticiaCompleta extends ActionBarActivity {
         setContentView(R.layout.activity_noticia_completa);
         noticia = new Noticia();
         noticia = (Noticia)getIntent().getSerializableExtra("Noticia");
-        TextView titulo = (TextView)findViewById(R.id.LblTitulo);
-        sub_titulo = (TextView)findViewById(R.id.LblSubTitulo);
-        titulo.setText(noticia.getTitulo().toString());
-        CargaImage tarea = new CargaImage();
-        tarea.execute();
+//        TextView titulo = (TextView)findViewById(R.id.LblTitulo);
+//        sub_titulo = (TextView)findViewById(R.id.LblSubTitulo);
+//        titulo.setText(noticia.getTitulo().toString());
+        String header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><html><body>";
+        WebView webView = (WebView)findViewById(R.id.webView);
+        webView.loadData(header+"<h2>"+noticia.getTitulo()+"</h2>"+noticia.getContenido()+"</body></html>","text/html; charset=UTF-8",null);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_noticia_completa, menu);
+//        getMenuInflater().inflate(R.menu.menu_noticia_completa, menu);
         return true;
     }
 
@@ -57,38 +59,5 @@ public class NoticiaCompleta extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    
-    private class CargaImage extends AsyncTask<String, Integer, Boolean>{
 
-        private Spanned spanned;
-
-        @Override
-        protected Boolean doInBackground(String... params) {
-            spanned = Html.fromHtml(noticia.getContenido(), getImageHTML(), null);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            Log.d("Prueba", spanned.toString());
-            sub_titulo.setText(spanned.toString());
-            super.onPostExecute(aBoolean);
-        }
-
-        public Html.ImageGetter getImageHTML() {
-            Html.ImageGetter ig = new Html.ImageGetter() {
-                public Drawable getDrawable(String source) {
-                    try {
-                        Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
-                        d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
-                        return null;
-                    } catch (IOException e) {
-                        Log.v("IOException", e.getMessage());
-                        return null;
-                    }
-                }
-            };
-            return ig;
-        }
-    }
 }
