@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -19,10 +23,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends ActionBarActivity
@@ -36,11 +40,25 @@ public class MainActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private List<Noticia> noticias;
     private AdaptadorTitulares adaptador;
+    private SectionsPagerAdapter sectionsPagerAdapter;
+    ViewPager viewPager;
+    public TabRobolid tabRobolid;
+    public TabCompeticiones tabCompeticiones;
+    public TabPatrocinadores tabPatrocinadores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        viewPager = (ViewPager)findViewById(R.id.pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
         datos = new ArrayList<Titular>();
         recView = (RecyclerView) findViewById(R.id.RecView);
         recView.setHasFixedSize(true);
@@ -187,5 +205,55 @@ public class MainActivity extends ActionBarActivity
             return ig;
         }
     }
+    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    tabRobolid = new TabRobolid();
+                    return tabRobolid;
+                case 1:
+                    tabCompeticiones = new TabCompeticiones();
+                    return tabCompeticiones;
+                default:
+                    tabPatrocinadores = new TabPatrocinadores();
+                    return tabPatrocinadores;
+            }
+        }
+
+        // @Override
+        // public Fragment getItem(int position) {
+        // // getItem is called to instantiate the fragment for the given page.
+        // // Return a DummySectionFragment (defined as a static inner class
+        // // below) with the page number as its lone argument.
+        // Fragment fragment = new DummySectionFragment();
+        // Bundle args = new Bundle();
+        // args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+        // fragment.setArguments(args);
+        // return fragment;
+        // }
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 1;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            Locale l = Locale.getDefault();
+            switch (position) {
+                case 1:
+                    return getString(R.string.title_section1).toUpperCase(l);
+                case 0:
+                    return getString(R.string.title_section3).toUpperCase(l);
+            }
+            return null;
+        }
+
+    }
 }
