@@ -28,7 +28,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/title_activity_robolid"
                 android:textColor="@color/ColorPrimaryDark"
-                android:textSize="64sp" />
+                android:textSize="50sp" />
 
             <TextView
                 android:id="@+id/textView"
