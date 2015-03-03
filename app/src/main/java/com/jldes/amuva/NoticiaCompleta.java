@@ -1,6 +1,7 @@
 package com.jldes.amuva;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,8 +17,11 @@ public class NoticiaCompleta extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticia_completa);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(true);
         noticia = new Noticia();
         noticia = (Noticia)getIntent().getSerializableExtra("Noticia");
+        actionBar.setTitle(noticia.getTitulo());
 //        TextView titulo = (TextView)findViewById(R.id.LblTitulo);
 //        sub_titulo = (TextView)findViewById(R.id.LblSubTitulo);
 //        titulo.setText(noticia.getTitulo().toString());

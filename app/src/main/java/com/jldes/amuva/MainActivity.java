@@ -106,7 +106,7 @@ public class MainActivity extends ActionBarActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(R.string.app_name);
+        actionBar.setTitle(R.string.title_section1);
     }
 
 

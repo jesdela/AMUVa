@@ -10,34 +10,102 @@
 
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView2"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" >
+        android:layout_centerHorizontal="true">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/titulo"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:textSize="64sp"
-                android:text="Robolid"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/title_activity_robolid"
                 android:textColor="@color/ColorPrimaryDark"
-                android:id="@+id/titulo" />
+                android:textSize="64sp" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView" />
+                android:text="¿Qué es Robolid?"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="robolid"/>
+                android:text="Robolid es una jornada de robótica donde además de aprender de forma divertida, podrás ver en acción aspectos de la robótica de una manera divertida. Robolid te da la posibilidad de acudir a charlas y conferencias sobre varios temas además de participar en competiciones y juegos junto a otras personas y sus propios robots. A día de hoy la robótica se aplica en muchas y diferentes áreas de la vida, tratándose de un campo que engloba muchas facetas, no sólo electrónica. También se requiere programar la inteligencia del robot, diseñarlo físicamente de manera adecuada… Pero en Robolid no verás sólo la parte técnica, sino que también verás la faceta más lúdica, donde los robots juegan y compiten entre sí en diferentes pruebas (luchando como sumos entre sí, rastreando caminos, etc.) para demostrar las diferencias en la creación de uno u otro." />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Robolid es sólo para gente que sabe de esto?"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No, no solo podrás participar si tienes conocimientos, si no que puede disfrutar gente de todas las edades, pequeños y mayores, en unas agradables jornadas donde los conocimientos no son necesarios para ver lo que la robótica puede conseguir incluso entre aficionados. Eso sí, te aseguramos que te encantará y probablemente te picará el gusanillo y querrás participar en futuras ediciones al ver lo que la gente que sabe puede llegar a hacer con sus robots." />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Absolutamente todo es un juego?"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No, también habrá conferencias y charlas técnicas para todos aquellos que sientan interés, por ejemplo, personas que estudian ingeniería, ciclos formativos, y en definitiva cualquiera con ganas de aprender y saber más de esta forma de vida que puede llegar a ser la robótica.  Robolid es un certamen que pretende desarrollar tres aspectos:  Formación académica Innovación Participación" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Hay que pagar?"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Si quieres disfrutar de un rato divertido viendo los robots concursando no, pero si deseas participar con tu robot, y éste se acoge a las normativas y reglas de las distintas pruebas que ofrecemos en esta edición podrás participar previo pago de una inscripción. Pero tienes la posibilidad de ganar muchos y grandes premios, y lo más importante, ¡la emoción de ver participar a tu robot!" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Que lo organiza AMUVa? ¿Qué es eso?"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ff000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sí, lo organiza AMUVa. AMUVa empezó gracias a un grupo de personas que tenían una afición en común, la microbótica o robótica. En la universidad era todo muy teórico y formaron esta asociación para profundizar en el tema a un nivel mucho más práctico, sirviendo además para difundir este mundo a cualquiera interesado en ello, desde los más pequeños a los más mayores.  Robolid surge como lazo de realimentación de AMUVa con el ambiente universitario, para mostrar a los compañeros de la Uva y del resto de universidades lo que se puede conseguir con un poco de tiempo, dinero, y mucho esfuerzo y ganas invertidos en robótica. Además, mostrando el atractivo del resultado final hay más gente interesada en AMUVa y en la microbótica y robótica en general." />
         </LinearLayout>
-        </ScrollView>
+    </ScrollView>
+
+
 </RelativeLayout>
