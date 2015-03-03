@@ -2,9 +2,11 @@ package com.jldes.amuva;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,15 +22,38 @@ public class Robolid extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
+    Toolbar toolbar;
     private CharSequence mTitle;
+    private TabRobolid tabRobolid;
+    private TabCompeticiones tabCompeticiones;
+    private TabPatrocinadores tabPatrocinadores;
+    private ViewPager viewPager;
+    private ViewPagerAdapter viewPagerAdapter;
+    SlidingTabLayout slidingTabLayout;
+    CharSequence Titles[]={"Robolid","Categorías","Patrocinadores","Clasificación"};
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robolid);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(R.string.title_activity_robolid);
+        actionBar = getSupportActionBar();
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),Titles,Titles.length);
+        viewPager = (ViewPager)findViewById(R.id.pager);
+        viewPager.setAdapter(viewPagerAdapter);
+        slidingTabLayout =(SlidingTabLayout)findViewById(R.id.tabs);
+        slidingTabLayout.setDistributeEvenly(true);
+        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer(){
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tabsScrollColor);
+            }
+        });
+        slidingTabLayout.setViewPager(viewPager);
+
+
+
+
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -99,9 +124,6 @@ public class Robolid extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
 
 
 }

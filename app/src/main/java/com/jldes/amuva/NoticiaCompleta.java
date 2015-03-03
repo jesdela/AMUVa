@@ -1,22 +1,11 @@
 package com.jldes.amuva;
 
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.net.URL;
 
 
 public class NoticiaCompleta extends ActionBarActivity {
