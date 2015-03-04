@@ -82,6 +82,22 @@ public class MainActivity extends ActionBarActivity
             case 1:
                 intent = new Intent(MainActivity.this, Robolid.class);
                 startActivity(intent);
+                finish();
+                break;
+            case 2:
+                intent= new Intent(MainActivity.this, Que_es_AMUVa.class);
+                startActivity(intent);
+                finish();
+                break;
+            case 3:
+                intent= new Intent(MainActivity.this, Como_LLegar.class);
+                startActivity(intent);
+                finish();
+                break;
+            case 4:
+                intent = new Intent(MainActivity.this, Contacto.class);
+                startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -188,4 +204,9 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 }

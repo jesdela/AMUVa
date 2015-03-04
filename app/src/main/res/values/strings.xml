@@ -22,4 +22,7 @@
     <string name="categorias">Categorías</string>
     <string name="patrocinadores">Patrocinadores</string>
     <string name="clasificaciones">Clasificaciones</string>
+    <string name="title_activity_que_es__amuva">¿Qué es AMUVa?</string>
+    <string name="title_activity_como__llegar">¿Cómo llegar?</string>
+    <string name="title_activity_contacto">Contacto</string>
 </resources>

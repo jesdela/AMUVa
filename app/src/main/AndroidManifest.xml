@@ -34,6 +34,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jldes.amuva.MainActivity" />
         </activity>
+        <activity
+            android:name=".Que_es_AMUVa"
+            android:label="@string/title_activity_que_es__amuva" >
+        </activity>
+        <activity
+            android:name=".Como_LLegar"
+            android:label="@string/title_activity_como__llegar" >
+        </activity>
+        <activity
+            android:name=".Contacto"
+            android:label="@string/title_activity_contacto" >
+        </activity>
     </application>
 
 </manifest>

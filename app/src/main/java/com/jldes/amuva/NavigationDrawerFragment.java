@@ -68,8 +68,18 @@ public class NavigationDrawerFragment extends Fragment {
         // drawer. See PREF_USER_LEARNED_DRAWER for details.
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mUserLearnedDrawer = sp.getBoolean(PREF_USER_LEARNED_DRAWER, false);
+
         if (getActivity().getClass()==Robolid.class){
             mCurrentSelectedPosition=1;
+        }
+        if (getActivity().getClass()==Que_es_AMUVa.class){
+            mCurrentSelectedPosition=2;
+        }
+        if (getActivity().getClass()==Como_LLegar.class){
+            mCurrentSelectedPosition=3;
+        }
+        if (getActivity().getClass()==Contacto.class){
+            mCurrentSelectedPosition=4;
         }
         if (savedInstanceState != null) {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
@@ -104,7 +114,10 @@ public class NavigationDrawerFragment extends Fragment {
                 android.R.id.text1,
                 new String[]{
                         getString(R.string.title_section1),
-                        getString(R.string.title_section2)
+                        getString(R.string.title_section2),
+                        getString(R.string.title_activity_que_es__amuva),
+                        getString(R.string.title_activity_como__llegar),
+                        getString(R.string.title_activity_contacto)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -232,12 +245,6 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // If the drawer is open, show the global app actions in the action bar. See also
-        // showGlobalContextActionBar, which controls the top-left area of the action bar.
-        if (mDrawerLayout != null && isDrawerOpen()) {
-            inflater.inflate(R.menu.global, menu);
-            showGlobalContextActionBar();
-        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 

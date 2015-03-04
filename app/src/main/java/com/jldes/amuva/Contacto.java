@@ -1,17 +1,26 @@
 package com.jldes.amuva;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.support.v4.widget.DrawerLayout;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 
-public class Robolid extends ActionBarActivity
+public class Contacto extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -22,39 +31,13 @@ public class Robolid extends ActionBarActivity
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-    Toolbar toolbar;
     private CharSequence mTitle;
-    private TabRobolid tabRobolid;
-    private TabCompeticiones tabCompeticiones;
-    private TabPatrocinadores tabPatrocinadores;
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    SlidingTabLayout slidingTabLayout;
-    CharSequence Titles[]={"Robolid","Categorías","Patrocinadores","Clasificación"};
-    private ActionBar actionBar;
-
+    Mail enviarMail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_robolid);
-        actionBar = getSupportActionBar();
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),Titles,Titles.length);
-        viewPager = (ViewPager)findViewById(R.id.pager);
-        viewPager.setAdapter(viewPagerAdapter);
-        slidingTabLayout =(SlidingTabLayout)findViewById(R.id.tabs);
-        slidingTabLayout.setDistributeEvenly(true);
-        slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer(){
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tabsScrollColor);
-            }
-        });
-        slidingTabLayout.setViewPager(viewPager);
-
-
-
-
-
+        setContentView(R.layout.activity_contacto);
+        enviarMail = new Mail(this);
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -71,27 +54,26 @@ public class Robolid extends ActionBarActivity
         // update the main content by replacing fragments
         switch (position) {
             case 0:
-                intent = new Intent(Robolid.this, MainActivity.class);
+                intent = new Intent(Contacto.this, MainActivity.class);
                 startActivity(intent);
                 finish();
                 break;
             case 1:
-
+                intent = new Intent(Contacto.this, Robolid.class);
+                startActivity(intent);
+                finish();
                 break;
             case 2:
-                intent = new Intent(Robolid.this, Que_es_AMUVa.class);
+                intent= new Intent(Contacto.this, Que_es_AMUVa.class);
                 startActivity(intent);
                 finish();
                 break;
             case 3:
-                intent= new Intent(Robolid.this, Como_LLegar.class);
+                intent= new Intent(Contacto.this, Como_LLegar.class);
                 startActivity(intent);
                 finish();
                 break;
             case 4:
-                intent = new Intent(Robolid.this, Contacto.class);
-                startActivity(intent);
-                finish();
                 break;
         }
     }
@@ -113,20 +95,12 @@ public class Robolid extends ActionBarActivity
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(R.string.title_activity_robolid);
+        actionBar.setTitle(R.string.title_activity_contacto);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.robolid, menu);
-            restoreActionBar();
-            return true;
-        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -135,11 +109,14 @@ public class Robolid extends ActionBarActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
 }
