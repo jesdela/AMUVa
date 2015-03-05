@@ -38,7 +38,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AMUVa es la Asociación de Microbótica de la Universidad de Valladolid, creada a mediados de 2002.  El objetivo de AMUVA es divulgar la robótica entre nuestros compañeros universitarios y mostrar un hobby del que se aprende mucho y puede ser una buena carta de presentación para un futuro trabajo. Además de esto, que sería el objetivo fundamental, también ofrecemos la oportunidad de conocer a mucha gente, viajar por diversos concursos, conocerte a ti mismo, descubrir y desarrollar capacidades de liderazgo y gestión de equipos, además de facetas técnicas. En definitiva, en AMUVa intentamos que te propongas nuevos retos y te ayudamos a conseguirlos.  En AMUVa organizamos varias actividades cada año, entre las que destacan:  Talleres de iniciación. Talleres de construcción de robots sencillos, estilo ratonbot. Talleres de robots avanzados, estilo rastreador. Cursos de iniciación al diseño electrónico. Cursos de programación. Robolid, la actividad estrella de la asociación. También participamos en diversos concursos de robótica a nivel nacional, muestra de ello es nuestra participación en:  Robolid Cosmobot JET Terrassa Hispabot Si quieres contactar con nosotros, puedes encontrarnos en el sótano de la Escuela de Ingenierías Industriales de Valladolid, o mandarnos un correo a la dirección info@amuva.es."
-                    android:id="@+id/textView89" />
+                    android:id="@+id/textView89"
+                    android:layout_gravity="center_horizontal" />
             </LinearLayout>
         </ScrollView>
 

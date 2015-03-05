@@ -2,6 +2,7 @@ package com.jldes.amuva;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class Contacto extends ActionBarActivity
@@ -41,6 +47,37 @@ public class Contacto extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+        Button enviar = (Button)findViewById(R.id.enviar);
+        LinearLayout facebook = (LinearLayout)findViewById(R.id.facebook);
+        LinearLayout twitter = (LinearLayout)findViewById(R.id.twitter);
+        final String[] datos =
+                new String[]{"General","Robolid","Talleres Internos","Talleres Externos"};
+
+        ArrayAdapter<String> adaptador =
+                new ArrayAdapter<String>(this,
+                        R.layout.list_item, datos);
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        spinner.setAdapter(adaptador);
+        facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.facebook.com/AMUVa")));
+            }
+        });
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://twitter.com/AMUVa_Robolid")));
+            }
+        });
+        enviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enviarMail.enviarMail();
+            }
+        });
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
