@@ -2,6 +2,7 @@ package com.jldes.amuva;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -41,6 +44,20 @@ public class Como_LLegar extends ActionBarActivity
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
+        ImageView renfe = (ImageView)findViewById(R.id.renfe);
+        renfe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.renfe.es")));
+            }
+        });
+        ImageButton maps = (ImageButton)findViewById(R.id.maps);
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:41.6570988,-4.710268?q=Escuela+de+ingenierias+industriales")));
+            }
+        });
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -116,6 +133,13 @@ public class Como_LLegar extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed() {
+        android.app.FragmentManager manager = getFragmentManager();
+        new DialogoConfirmacion().show(manager,"alerta");
+//        finish();
+//        super.onBackPressed();
     }
 
 

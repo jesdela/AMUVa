@@ -1,8 +1,7 @@
 <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jldes.amuva.Como_LLegar">
@@ -36,7 +35,129 @@
                     android:gravity="center"
                     android:text="@string/title_activity_como__llegar"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textSize="50sp"/>
+                    android:textSize="50sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="La Asociación de Microbótica de la Universidad de Valladolid se encuentra ubicada en la EII (Escuela de Ingenierías Industriales) de Valladolid en la dirección:"
+                    android:layout_marginTop="8dp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/textView99"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Paseo del Cauce S/N, 47011 Valladolid España."
+                        android:layout_weight="0.01"
+                        android:layout_marginLeft="16dp" />
+
+                    <ImageButton
+                        android:id="@+id/maps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:src="@android:drawable/ic_dialog_map" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Desde Valladolid:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="
+Lineas de Autobus:" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Linea C1: Parquesol - Delicias - Pajarillos - Pilarica     - Rondilla - La Victoria - Girón     - Villa de Prado - Parquesol"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Linea 7: Arturo Eyries - Belén"
+                    android:layout_marginLeft="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Linea 8: Parquesol - Belén"
+                    android:layout_marginLeft="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Taxis:" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Radio Taxi: Tel. (+34) 983 291 411"
+                    android:layout_marginLeft="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Agrupación de Taxistas: Tel. (+34) 983 207 755"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Desde fuera Valladolid:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estación de autobuses de Valladolid:" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Situada en la Calle Puente Colgante, está ubicada en el centro de la ciudad a escasos metros de la estación de ferrocarril."
+                    android:layout_marginLeft="16dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trenes:" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Puede consultar la programación de trenes en la web de Renfe."
+                    android:layout_marginLeft="16dp" />
+
+                <ImageView
+                    android:id="@+id/renfe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/logorenfe" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aeropuerto:" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="El aeropuerto de Valladolid está situado en el término municipal de Villanubla, a diez kilómetros de la capital. Actualmente mantiene conexiones regulares con Barcelona, Paris, Bruselas, Londres, Milán...
+Puede consultar la programación completa de vuelos en la web de Aena.\nExiste un servicio de autobuses que une el aeropuerto con Valladolid ofrecido por la empresa Linecar. Pueden informarse de los horarios en el siguiente teléfono: 983 230 033. Otra manera de llegar a la ciudad es en taxi, que cobra una tarifa fija de 19 € en horario diurno y 21 €en horario nocturno por cubrir los diez kilómetros que separan el aeropuerto de la ciudad. La reserva con antelación del servicio tendrá un sobrecoste de 1,50 € a mayores." />
+
             </LinearLayout>
         </ScrollView>
     </FrameLayout>
@@ -54,6 +175,6 @@
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_navigation_drawer"/>
+        tools:layout="@layout/fragment_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

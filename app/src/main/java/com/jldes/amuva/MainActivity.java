@@ -1,5 +1,10 @@
 package com.jldes.amuva;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -206,7 +211,10 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onBackPressed() {
-        finish();
-        super.onBackPressed();
+        FragmentManager manager = getFragmentManager();
+        new DialogoConfirmacion().show(manager,"alerta");
+//        finish();
+//        super.onBackPressed();
     }
+
 }

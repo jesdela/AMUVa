@@ -213,7 +213,6 @@ public class NavigationDrawerFragment extends Fragment {
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
     }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

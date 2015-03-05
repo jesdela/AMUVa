@@ -139,6 +139,13 @@ public class Robolid extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onBackPressed() {
+        android.app.FragmentManager manager = getFragmentManager();
+        new DialogoConfirmacion().show(manager,"alerta");
+//        finish();
+//        super.onBackPressed();
+    }
 
 
 
