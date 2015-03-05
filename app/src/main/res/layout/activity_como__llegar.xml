@@ -135,7 +135,7 @@ Lineas de Autobus:" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Puede consultar la programación de trenes en la web de Renfe."
+                    android:text="Puede consultar la programación de trenes en la web de Renfe. Si vas a acudir en tren a Robolid ponte en contacto con los encargados de Robolid en el formulario de contacto."
                     android:layout_marginLeft="16dp" />
 
                 <ImageView
