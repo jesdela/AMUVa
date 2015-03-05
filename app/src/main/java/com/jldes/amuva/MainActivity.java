@@ -1,12 +1,13 @@
 package com.jldes.amuva;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -53,8 +54,6 @@ public class MainActivity extends ActionBarActivity
         recView.setAdapter(adaptador);
 
 
-
-
         recView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
         //recView.setLayoutManager(new GridLayoutManager(this,3));
 
@@ -62,8 +61,10 @@ public class MainActivity extends ActionBarActivity
 //                new DividerItemDecoration(this,DividerItemDecoration.VERTICAL_LIST));
 
         recView.setItemAnimator(new DefaultItemAnimator());
-        CargarXmlTask tarea = new CargarXmlTask();
-        tarea.execute("http://amuva.es/feed/");
+        if (estaConectado()) {
+            CargarXmlTask tarea = new CargarXmlTask();
+            tarea.execute("http://amuva.es/feed/");
+        }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -75,6 +76,63 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
     }
+
+    private boolean estaConectado() {
+        if (conectadoWifi()) {
+            return true;
+        } else {
+            if (conectadoRedMovil()) {
+                return true;
+            } else {
+                showAlertDialog(MainActivity.this, "Conexion a Internet",
+                        "Tu Dispositivo no tiene Conexion a Internet.", false);
+                return false;
+            }
+        }
+    }
+
+    protected Boolean conectadoWifi() {
+        ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (info != null) {
+                if (info.isConnected()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    protected Boolean conectadoRedMovil() {
+        ConnectivityManager connectivity = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (info != null) {
+                if (info.isConnected()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        alertDialog.setTitle(title);
+
+        alertDialog.setMessage(message);
+
+
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        alertDialog.show();
+    }
+
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
@@ -90,12 +148,12 @@ public class MainActivity extends ActionBarActivity
                 finish();
                 break;
             case 2:
-                intent= new Intent(MainActivity.this, Que_es_AMUVa.class);
+                intent = new Intent(MainActivity.this, Que_es_AMUVa.class);
                 startActivity(intent);
                 finish();
                 break;
             case 3:
-                intent= new Intent(MainActivity.this, Como_LLegar.class);
+                intent = new Intent(MainActivity.this, Como_LLegar.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -174,7 +232,7 @@ public class MainActivity extends ActionBarActivity
 
             //Tratamos la lista de noticias
             //Por ejemplo: escribimos los títulos en pantalla
-            for (Noticia noticia : noticias.subList(0,6)) {
+            for (Noticia noticia : noticias.subList(0, 6)) {
                 Spanned spanned = Html.fromHtml(noticia.getDescripcion(), getImageHTML(), null);
                 datos.add(new Titular(noticia.getTitulo(), "" + spanned));
             }
@@ -184,7 +242,7 @@ public class MainActivity extends ActionBarActivity
             adaptador.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,NoticiaCompleta.class);
+                    Intent intent = new Intent(MainActivity.this, NoticiaCompleta.class);
                     intent.putExtra("Noticia", noticias.get(recView.getChildPosition(v)));
                     startActivity(intent);
                 }
@@ -212,7 +270,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onBackPressed() {
         FragmentManager manager = getFragmentManager();
-        new DialogoConfirmacion().show(manager,"alerta");
+        new DialogoConfirmacion().show(manager, "alerta");
 //        finish();
 //        super.onBackPressed();
     }
