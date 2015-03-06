@@ -91,6 +91,9 @@ public class Como_LLegar extends ActionBarActivity
                 startActivity(intent);
                 finish();
                 break;
+            case 5:
+                Social.share(Como_LLegar.this,"AMUVa en Google Play", "Ten toda la información sobre AMUVa en tu móvil: https://play.google.com/store/apps/details?id=com.jldes.amuva");
+                break;
         }
     }
 

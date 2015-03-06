@@ -112,6 +112,9 @@ public class Contacto extends ActionBarActivity
                 break;
             case 4:
                 break;
+            case 5:
+                Social.share(Contacto.this,"AMUVa en Google Play", "Ten toda la información sobre AMUVa en tu móvil: https://play.google.com/store/apps/details?id=com.jldes.amuva");
+                break;
         }
     }
 

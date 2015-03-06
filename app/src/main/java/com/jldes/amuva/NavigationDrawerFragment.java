@@ -117,7 +117,8 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section2),
                         getString(R.string.title_activity_que_es__amuva),
                         getString(R.string.title_activity_como__llegar),
-                        getString(R.string.title_activity_contacto)
+                        getString(R.string.title_activity_contacto),
+                        "Compartir"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
