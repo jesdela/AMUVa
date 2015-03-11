@@ -1,12 +1,19 @@
 package com.jldes.amuva;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
+import android.text.Spanned;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 public class NoticiaCompleta extends ActionBarActivity {
@@ -34,7 +41,7 @@ public class NoticiaCompleta extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_noticia_completa, menu);
+        getMenuInflater().inflate(R.menu.menu_noticia_completa, menu);
         return true;
     }
 
@@ -46,11 +53,28 @@ public class NoticiaCompleta extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.compartir) {
+            Spanned spanned = Html.fromHtml(noticia.getDescripcion(), getImageHTML(), null);
+            Social.share(NoticiaCompleta.this,noticia.getTitulo(), spanned.toString().substring(0,90)+" Vía App de @AMUVa_Robolid "+noticia.getLink());
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
+    public Html.ImageGetter getImageHTML() {
+        Html.ImageGetter ig = new Html.ImageGetter() {
+            public Drawable getDrawable(String source) {
+                try {
+                    Drawable d = Drawable.createFromStream(new URL(source).openStream(), "src name");
+                    d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+                    return d;
+                } catch (IOException e) {
+                    Log.v("IOException", e.getMessage());
+                    return null;
+                }
+            }
+        };
+        return ig;
+    }
 }
