@@ -30,7 +30,7 @@ public class Robolid extends ActionBarActivity
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     SlidingTabLayout slidingTabLayout;
-    CharSequence Titles[]={"Robolid","Categorías","Patrocinadores","Clasificación"};
+    CharSequence Titles[]={"Robolid","Categorías","Clasificación","Inscripciones","Patrocinadores"};
     private ActionBar actionBar;
 
     @Override

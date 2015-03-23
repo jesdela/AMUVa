@@ -1,7 +1,6 @@
 package com.jldes.amuva;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.widget.Spinner;
 import android.widget.TextView;
 

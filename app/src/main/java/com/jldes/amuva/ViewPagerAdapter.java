@@ -34,11 +34,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 TabCompeticiones tabCompeticiones = new TabCompeticiones();
                 return tabCompeticiones;
             case 2:
-                TabPatrocinadores tabPatrocinadores = new TabPatrocinadores();
-                return tabPatrocinadores;
-            default:
                 TabClasificacion tabClasificacion = new TabClasificacion();
                 return tabClasificacion;
+            case 3:
+                TabInscripciones tabInscripciones = new TabInscripciones();
+                return tabInscripciones;
+            default:
+                TabPatrocinadores tabPatrocinadores = new TabPatrocinadores();
+                return tabPatrocinadores;
+
         }
 
 
