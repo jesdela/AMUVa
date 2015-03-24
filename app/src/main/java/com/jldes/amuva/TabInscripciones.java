@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,15 +21,15 @@ public class TabInscripciones extends Fragment {
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),"Comfortaa-Regular.ttf");
         TextView titulo = (TextView)v.findViewById(R.id.titulo_inscr);
         titulo.setTypeface(typeface);
-//        ImageView imageView1 = (ImageView)v.findViewById(R.id.imageView16);
-//        imageView1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(
-//                        Intent.ACTION_VIEW,
-//                        Uri.parse("http://robolid.amuva.es/documentos/Dossier_Robolid_2015.pdf")));
-//            }
-//        });
+        Button inscribir = (Button)v.findViewById(R.id.inscribir);
+        inscribir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("http://robolid.amuva.es/inscripcion.php")));
+            }
+        });
         return v;
     }
 
