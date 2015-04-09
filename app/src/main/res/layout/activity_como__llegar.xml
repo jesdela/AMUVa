@@ -83,7 +83,7 @@ Lineas de Autobus:" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Linea C1: Parquesol - Delicias - Pajarillos - Pilarica     - Rondilla - La Victoria - Girón     - Villa de Prado - Parquesol"
+                    android:text="Línea C1: Parquesol - Delicias - Pajarillos - Pilarica     - Rondilla - La Victoria - Girón     - Villa de Prado - Parquesol"
                     android:layout_marginLeft="16dp" />
 
                 <TextView
@@ -115,7 +115,7 @@ Lineas de Autobus:" />
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Desde fuera Valladolid:"
+                    android:text="Desde fuera de Valladolid:"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
@@ -155,8 +155,8 @@ Lineas de Autobus:" />
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:text="El aeropuerto de Valladolid está situado en el término municipal de Villanubla, a diez kilómetros de la capital. Actualmente mantiene conexiones regulares con Barcelona, Paris, Bruselas, Londres, Milán...
-Puede consultar la programación completa de vuelos en la web de Aena.\nExiste un servicio de autobuses que une el aeropuerto con Valladolid ofrecido por la empresa Linecar. Pueden informarse de los horarios en el siguiente teléfono: 983 230 033. Otra manera de llegar a la ciudad es en taxi, que cobra una tarifa fija de 19 € en horario diurno y 21 €en horario nocturno por cubrir los diez kilómetros que separan el aeropuerto de la ciudad. La reserva con antelación del servicio tendrá un sobrecoste de 1,50 € a mayores." />
+                        android:text="El aeropuerto de Valladolid está situado en el término municipal de Villanubla, a diez kilómetros de la capital. Actualmente mantiene conexiones regulares con Barcelona, Paris, Bruselas, Londres, Milán...
+    Puede consultar la programación completa de vuelos en la web de Aena.\nExiste un servicio de autobuses que une el aeropuerto con Valladolid ofrecido por la empresa Linecar. Pueden informarse de los horarios en el siguiente teléfono: 983 230 033. Otra manera de llegar a la ciudad es en taxi, que cobra una tarifa fija de 19 € en horario diurno y 21 €en horario nocturno por cubrir los diez kilómetros que separan el aeropuerto de la ciudad. La reserva con antelación del servicio tendrá un sobrecoste de 1,50 € a mayores." />
 
             </LinearLayout>
         </ScrollView>

@@ -1,5 +1,6 @@
 package com.jldes.amuva;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,7 +20,6 @@ public class TabClasificacion extends Fragment {
         Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(),"Comfortaa-Regular.ttf");
         TextView titulo = (TextView)v.findViewById(R.id.titulo_clasi);
         titulo.setTypeface(typeface);
-
         return v;
     }
 }

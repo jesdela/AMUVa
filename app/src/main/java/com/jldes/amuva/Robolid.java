@@ -37,6 +37,8 @@ public class Robolid extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_robolid);
+        Intent empezar = new Intent(this,IntentClasificacion.class);
+        startService(empezar);
         actionBar = getSupportActionBar();
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),Titles,Titles.length);
         viewPager = (ViewPager)findViewById(R.id.pager);
