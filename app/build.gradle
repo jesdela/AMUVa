@@ -8,8 +8,8 @@ android {
         applicationId "com.jldes.amuva"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 14
-        versionName "1.0"
+        versionCode 17
+        versionName "1.2"
     }
     buildTypes {
         release {

@@ -30,7 +30,7 @@ public class Robolid extends ActionBarActivity
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     SlidingTabLayout slidingTabLayout;
-    CharSequence Titles[]={"Robolid","Categorías","Patrocinadores","Clasificación"};
+    CharSequence Titles[]={"Robolid","Categorías","Inscripciones","Clasificación","Patrocinadores"};
     private ActionBar actionBar;
 
     @Override
@@ -124,14 +124,6 @@ public class Robolid extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.robolid, menu);
-            restoreActionBar();
-            return true;
-        }
         return super.onCreateOptionsMenu(menu);
     }
 
